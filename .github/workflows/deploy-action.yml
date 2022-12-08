@@ -22,7 +22,7 @@ jobs:
       with:
         scope: subscription
         subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
-        #resourceGroupName: ${{ secrets.AZURE_RG }}
+        region: 'westeurope'
         template: ./main.bicep
         parameters: main.parameters-d.json
         failOnStdErr: true
