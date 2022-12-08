@@ -5,7 +5,7 @@ on:
     inputs:
       risk:
         type: boolean
-        description: 'High risk deployment?'
+        description: 'High risk deployment? \nOg en laaaang smøre om hvor farligt det er bla bla bla.\nNy linie bla bla'
       circumventSoD:
         type: boolean
         description: 'Do you want to deploy now and postpone approval(Not normal flow)?'
@@ -22,7 +22,7 @@ jobs:
         approvers: rasmus-svith-andersen-jyskebank-dk 
         minimum-approvals: 1
         issue-title: "Approve production deployment, high risk: ${{ github.event.inputs.risk }}"
-        exclude-workflow-initiator-as-approver: ${{ !github.event.inputs.circumventSoD }}
+        exclude-workflow-initiator-as-approver: ${{ github.event.inputs.circumventSoD != 'true' }}
 
       # Checkout code
     - uses: actions/checkout@main
@@ -44,7 +44,7 @@ jobs:
         failOnStdErr: true
 
     - uses: trstringer/manual-approval@v1
-      if: github.event.inputs.circumventSoD
+      if: ${{ github.event.inputs.circumventSoD == 'true' }}
       with:
         secret: ${{ secrets.TOKEN }}
         approvers: rasmus-svith-andersen-jyskebank-dk 
