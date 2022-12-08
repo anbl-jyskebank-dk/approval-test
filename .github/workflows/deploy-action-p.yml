@@ -1,0 +1,33 @@
+name: deploy-bicep-production
+
+on: [workflow_dispatch]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      #Approval
+    - uses: trstringer/manual-approval@v1
+      with:
+        secret: ${{ secrets.TOKEN }}
+        approvers: anbl-jyskebank-dk
+
+      # Checkout code
+    - uses: actions/checkout@main
+
+      # Log into Azure
+    - uses: azure/login@v1
+      with:
+        creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+
+      # Deploy Bicep file
+    - name: deploy
+      uses: azure/arm-deploy@v1
+      with:
+        scope: subscription
+        subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+        region: 'westeurope'
+        template: ./main.bicep
+        parameters: main.parameters-p.json
+        failOnStdErr: true
