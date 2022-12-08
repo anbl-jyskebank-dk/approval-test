@@ -16,10 +16,10 @@ jobs:
     - uses: trstringer/manual-approval@v1
       with:
         secret: ${{ secrets.TOKEN }}
-        approvers: hen-jyskebank-dk
+        approvers: anbl-jyskebank-dk
         minimum-approvals: 1
         issue-title: "Approve production deployment, high risk: ${{ github.event.inputs.risk }}"
-        exclude-workflow-initiator-as-approver: true
+        exclude-workflow-initiator-as-approver: false
 
       # Checkout code
     - uses: actions/checkout@main
