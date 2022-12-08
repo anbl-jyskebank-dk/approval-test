@@ -1,11 +1,11 @@
-name: deploy-bicep-actions
+name: deploy-bicep-staging
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: Development
+    environment: Staging
     steps:
 
       # Checkout code
@@ -24,5 +24,5 @@ jobs:
         subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
         region: 'westeurope'
         template: ./main.bicep
-        parameters: main.parameters-d.json
+        parameters: main.parameters-t.json
         failOnStdErr: true
