@@ -6,7 +6,6 @@ on:
       risk:
         type: boolean
         description: 'High risk deployment?'
-    inputs:
       circumventSoD:
         type: boolean
         description: 'Do you want to deploy now and postpone approval(Not normal flow)?'
