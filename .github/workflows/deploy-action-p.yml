@@ -1,6 +1,11 @@
 name: deploy-bicep-production
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      risk:
+        type: boolean
+        description: 'High risk deployment?'
 
 jobs:
   build-and-deploy:
@@ -11,7 +16,10 @@ jobs:
     - uses: trstringer/manual-approval@v1
       with:
         secret: ${{ secrets.TOKEN }}
-        approvers: anbl-jyskebank-dk
+        approvers: hen-jyskebank-dk
+        minimum-approvals: 1
+        issue-title: "Approve production deployment, high risk: ${{ github.event.inputs.risk }}"
+        exclude-workflow-initiator-as-approver: true
 
       # Checkout code
     - uses: actions/checkout@main
