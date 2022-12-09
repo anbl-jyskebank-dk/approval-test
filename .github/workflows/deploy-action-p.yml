@@ -19,7 +19,7 @@ jobs:
     - uses: trstringer/manual-approval@v1
       with:
         secret: ${{ secrets.TOKEN }}
-        approvers: rasmus-svith-andersen-jyskebank-dk 
+        approvers: rasmus-svith-andersen-jyskebank-dk, anbl-jyskebank-dk
         minimum-approvals: 1
         issue-title: "Approve production deployment, high risk: ${{ github.event.inputs.risk }}"
         exclude-workflow-initiator-as-approver: ${{ github.event.inputs.circumventSoD != 'true' }}
@@ -47,7 +47,7 @@ jobs:
       if: ${{ github.event.inputs.circumventSoD == 'true' }}
       with:
         secret: ${{ secrets.TOKEN }}
-        approvers: rasmus-svith-andersen-jyskebank-dk 
+        approvers: rasmus-svith-andersen-jyskebank-dk, anbl-jyskebank-dk
         minimum-approvals: 1
         issue-title: "Post approve production deployment, high risk: ${{ github.event.inputs.risk }}"
         exclude-workflow-initiator-as-approver: true
