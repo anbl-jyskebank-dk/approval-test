@@ -13,6 +13,7 @@ jobs:
       - name: Run build script
         run: |
           printenv
-          cat $GITHUB_EVENT_PATH 
+          cat $GITHUB_EVENT_PATH
+          echo '${{ github.event.issue }}'
         shell: bash
 
