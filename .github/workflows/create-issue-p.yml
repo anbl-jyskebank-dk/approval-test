@@ -14,7 +14,7 @@ jobs:
         run: |
           printenv
           #cat $GITHUB_EVENT_PATH
-          echo '${{ toJson(github.event.issue) }}'
-          curl comments_url
+          echo '${{ github.event.issue.github.event.issue }}'
+          curl '${{ github.event.issue.comments_url }}'
         shell: bash
 
