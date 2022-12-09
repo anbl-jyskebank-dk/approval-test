@@ -11,7 +11,7 @@ jobs:
     environment: Production
     steps:
       - name: Run build script
-        run: ../scripts/issue.sh
+        run: printenv
         shell: bash
         env:
           EVENT: github.event.issue
