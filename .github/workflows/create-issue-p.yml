@@ -15,5 +15,6 @@ jobs:
           printenv
           #cat $GITHUB_EVENT_PATH
           echo '${{ toJson(github.event.issue) }}'
+          curl comments_url
         shell: bash
 
