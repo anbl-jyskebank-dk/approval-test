@@ -11,9 +11,7 @@ jobs:
     environment: Production
     steps:
       - name: Run build script
-        run: |
-          printenv
-          cat GITHUB_EVENT_PATH 
+        run: cat $GITHUB_EVENT_PATH 
         shell: bash
         env:
           EVENT: ${{ github.event.issue }}
